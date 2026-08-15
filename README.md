@@ -1,6 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pilot
 
-## Getting Started
+Pilot is an intelligent Next.js application designed with an automated browser agent and a prompt optimization loop.
+
+## Architecture
+
+The codebase is organized with a clear separation of concerns in the `src/lib/` directory:
+
+- **`/src/app`**: Next.js App Router for all user interface components and pages.
+- **`/src/lib/agent`**: Browser automation logic and integrations.
+- **`/src/lib/optimizer`**: Prompt optimization loop handling AI interactions and evaluation.
+- **`/src/lib/db`**: Database connection and data layer logic.
+
+## Branching Strategy
+
+This repository follows a specific branch flow to ensure stability:
+- `main`: Production code.
+- `staging`: Integration branch for testing before production.
+- `feature/*`: Active development branches.
+
+**Workflow:**
+1. Branch from `staging` into `feature/your-feature`.
+2. PR from `feature/*` to `staging` (Requires passing CI checks).
+3. PR from `staging` to `main` for production releases.
+
+For more details, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Deployments (Vercel)
+
+This repository is connected to Vercel for automated deployments:
+- **Production (`main`)**: Commits to `main` auto-deploy to the primary production domain.
+- **Staging (`staging`)**: Commits to `staging` auto-deploy to a dedicated staging environment (e.g. `staging.[domain]`).
+- **Feature Branches**: Pushing to feature branches or opening PRs will generate unique Preview URLs.
+
+## Getting Started Locally
 
 First, run the development server:
 
@@ -15,22 +47,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
