@@ -1,5 +1,7 @@
 # Pilot
 
+<!-- TEST CI DEPLOYMENT PIPELINE -->
+
 Pilot is an intelligent Next.js application designed with an automated browser agent and a prompt optimization loop.
 
 ## Architecture
