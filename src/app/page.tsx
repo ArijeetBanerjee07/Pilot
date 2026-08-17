@@ -1,5 +1,11 @@
-import { redirect } from 'next/navigation';
+"use client";
+
+import PilotDesignV7 from '@/components/designs/PilotDesignV7';
 
 export default function Home() {
-  redirect('/dashboard');
+  return (
+    <div className="w-full min-h-screen">
+      <PilotDesignV7 />
+    </div>
+  );
 }
