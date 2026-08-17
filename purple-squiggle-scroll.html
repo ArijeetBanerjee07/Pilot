@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Purple Squiggle — Scroll Draw</title>
+<style>
+  :root{
+    --bg: #f4f2fb;
+    --line: #7c3aed;
+    --line-dark: #4c1d95;
+    --ink: #1e1b2e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    font-family: -apple-system, "Inter", system-ui, sans-serif;
+    color: var(--ink);
+  }
+  .spacer { height: 40vh; display:flex; align-items:center; justify-content:center; }
+  .spacer h1 { font-size: clamp(24px, 5vw, 48px); font-weight: 700; opacity:.85; text-align:center; padding: 0 24px;}
+  .spacer p { text-align:center; opacity:.5; font-size:14px; }
+
+  .squiggle-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    height: 1400px;
+  }
+  .squiggle-wrap svg {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: block;
+  }
+  #squigglePath {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 12;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 6px 14px rgba(124,58,237,0.35));
+  }
+</style>
+</head>
+<body>
+
+  <div class="spacer">
+    <div>
+      <h1>Scroll down ↓</h1>
+      <p>the purple line draws itself as you scroll</p>
+    </div>
+  </div>
+
+  <div class="squiggle-wrap">
+    <svg viewBox="0 0 300 1350" preserveAspectRatio="xMidYMid meet">
+      <path id="squigglePath" pathLength="1000" d="
+        M 270 10
+        C 250 20, 232 30, 224.6 47.7
+        A 45 45 0 1 1 232.2 45.7
+        C 190 80, 60 133, 60 220
+        C 60 300, 260 300, 260 380
+        C 260 438, 91.5 438, 91.5 496.5
+        A 25 25 0 1 1 95.6 495.4
+        C 95.6 587.7, 260 587.7, 260 680
+        C 260 760, 60 760, 60 840
+        C 60 920, 240 920, 240 1000
+        C 240 1080, 80 1080, 80 1160
+        C 80 1220, 150 1220, 150 1280
+        C 150 1300, 120 1320, 100 1310
+        C 90 1305, 95 1290, 110 1295
+      "/>
+    </svg>
+  </div>
+
+  <div class="spacer">
+    <h1>All drawn ✓</h1>
+  </div>
+
+<script>
+  const path = document.getElementById('squigglePath');
+  const wrap = document.querySelector('.squiggle-wrap');
+  const LEN = 1000; // matches pathLength attribute
+
+  path.style.strokeDasharray = LEN;
+  path.style.strokeDashoffset = LEN;
+
+  function update() {
+    const rect = wrap.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // progress: 0 when wrap top is at bottom of viewport, 1 when wrap bottom reaches top of viewport
+    const total = rect.height - vh + vh; // total scrollable distance through the sticky section
+    const scrolled = vh - rect.top;      // how far we've scrolled into it
+    let progress = scrolled / (rect.height); // 0 -> 1 across the whole wrap height
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    path.style.strokeDashoffset = LEN * (1 - progress);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+</script>
+
+</body>
+</html>
