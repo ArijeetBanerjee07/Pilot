@@ -67,7 +67,7 @@ export default function PaperPlanePuzzle({ onSolve, forceSolve, className }: Pap
     // Start solved
     let initialTiles = Array.from({ length: TILE_COUNT }, (_, i) => i);
     let emptyIndex = TILE_COUNT - 1;
-    let history: number[] = [];
+    const history: number[] = [];
     
     // Shuffle by making random valid moves to ensure it's solvable
     for (let i = 0; i < 40; i++) {
@@ -91,7 +91,8 @@ export default function PaperPlanePuzzle({ onSolve, forceSolve, className }: Pap
     }
     
     undoMovesRef.current = history.reverse();
-    setTiles(initialTiles);
+    const tilesToSet = initialTiles;
+    setTimeout(() => { setTiles(tilesToSet); }, 0);
   }, []);
 
   const handleTileClick = (index: number) => {

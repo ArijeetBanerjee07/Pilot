@@ -8,7 +8,7 @@ interface StarBorderProps {
   speed?: string;
   thickness?: number;
   children: React.ReactNode;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const StarBorder = ({
