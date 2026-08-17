@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Third-party agent skill files — not our code, do not lint:
+    ".agents/**",
   ]),
 ]);
 
