@@ -21,7 +21,7 @@ export default function PaperPlanePuzzle({ onSolve, forceSolve, className }: Pap
 
   useEffect(() => {
     if (forceSolve && !isSolved && !isAutoSolving) {
-      setIsAutoSolving(true);
+      setTimeout(() => setIsAutoSolving(true), 0);
     }
   }, [forceSolve, isSolved, isAutoSolving]);
 
@@ -55,9 +55,11 @@ export default function PaperPlanePuzzle({ onSolve, forceSolve, className }: Pap
     if (tiles.length > 0 && !isSolved) {
       const won = tiles.every((val, index) => val === index);
       if (won) {
-        setIsSolved(true);
-        setIsAutoSolving(false);
-        onSolve();
+        setTimeout(() => {
+          setIsSolved(true);
+          setIsAutoSolving(false);
+          onSolve();
+        }, 0);
       }
     }
   }, [tiles, isSolved, onSolve]);
@@ -65,7 +67,7 @@ export default function PaperPlanePuzzle({ onSolve, forceSolve, className }: Pap
   // Initialize and shuffle
   useEffect(() => {
     // Start solved
-    let initialTiles = Array.from({ length: TILE_COUNT }, (_, i) => i);
+    const initialTiles = Array.from({ length: TILE_COUNT }, (_, i) => i);
     let emptyIndex = TILE_COUNT - 1;
     const history: number[] = [];
     

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
-import { Wind, ArrowRight, Info, Waves, Zap, Infinity, MessageCircle } from 'lucide-react';
+import { Wind, Info, MessageCircle } from 'lucide-react';
 import { FaTwitter, FaGithub } from 'react-icons/fa';
 import { RadialGlowButton } from '../ui/radial-glow-button';
 import TextMarque from '../ui/text-marque';
@@ -65,7 +65,7 @@ export default function PilotDesignV7() {
       const currentLength = totalLength * latest;
       const point = pathRef.current.getPointAtLength(currentLength);
       
-      let nextLength = currentLength + 2;
+      const nextLength = currentLength + 2;
       let angle = 0;
       
       if (nextLength > totalLength) {
@@ -96,7 +96,7 @@ export default function PilotDesignV7() {
   React.useEffect(() => {
     if (!squiggleRef.current) return;
     const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         setSvgSize({ width: entry.contentRect.width, height: entry.contentRect.height });
       }
     });
@@ -197,7 +197,7 @@ export default function PilotDesignV7() {
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden mix-blend-multiply opacity-90">
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full">
             <motion.path
-              ref={pathRef as any}
+              ref={pathRef as React.RefObject<SVGPathElement>}
               d={pathD}
               fill="none"
               stroke="#FF99CC"
@@ -269,10 +269,10 @@ export default function PilotDesignV7() {
               Automate your work
             </div>
             <h2 className="text-black text-4xl md:text-5xl font-bold leading-tight">
-              Intelligence isn't rigid. <br/> <span className={`transition-all duration-[3000ms] ease-in-out ${isPuzzleSolved ? "text-[#bd6bfb]" : "text-black/50"}`}>It's adaptive.</span>
+              Intelligence isn&apos;t rigid. <br/> <span className={`transition-all duration-[3000ms] ease-in-out ${isPuzzleSolved ? "text-[#bd6bfb]" : "text-black/50"}`}>It&apos;s adaptive.</span>
             </h2>
             <p className="text-black/70 text-lg leading-relaxed">
-              We didn't build another tool that forces you to change how you work. We built an AI that studies your existing workflows, learns your patterns, and integrates itself seamlessly. 
+              We didn&apos;t build another tool that forces you to change how you work. We built an AI that studies your existing workflows, learns your patterns, and integrates itself seamlessly. 
             </p>
             <div className="grid grid-cols-2 gap-8 mt-8">
               <div className="flex flex-col gap-2">
@@ -439,7 +439,7 @@ export default function PilotDesignV7() {
                 We value<br />every word<br />you say.
               </h2>
               <p className="text-[#CAABFF]/70 text-base md:text-lg leading-relaxed max-w-sm">
-                Tell us what's working, what's not, and how Pilot can become your most powerful tool yet.
+                Tell us what&apos;s working, what&apos;s not, and how Pilot can become your most powerful tool yet.
               </p>
               <div className="flex flex-col gap-4 mt-4">
                 {["Completely anonymous & private", "Takes less than 60 seconds", "Shapes the product roadmap"].map((item, i) => (
