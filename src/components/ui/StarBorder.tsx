@@ -7,6 +7,7 @@ interface StarBorderProps {
   color?: string;
   speed?: string;
   thickness?: number;
+  style?: React.CSSProperties;
   children: React.ReactNode;
   [key: string]: unknown;
 }
