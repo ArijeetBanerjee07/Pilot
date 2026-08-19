@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -19,7 +19,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user, account }) {
       // Upsert user into Supabase on every login
       if (user.email) {
-        await supabaseAdmin.from("users").upsert(
+        await getSupabaseAdmin().from("users").upsert(
           {
             email: user.email,
             name: user.name ?? null,
