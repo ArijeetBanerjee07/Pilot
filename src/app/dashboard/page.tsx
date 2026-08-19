@@ -1,12 +1,21 @@
-'use client';
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import { DashboardStyle2 } from "@/components/dashboard/DashboardStyle2";
 
-import React from 'react';
-import { DashboardStyle2 } from '@/components/dashboard/DashboardStyle2';
+export default async function DashboardPage() {
+  const session = await auth();
 
-export default function DashboardPage() {
+  if (!session?.user) {
+    redirect("/auth");
+  }
+
   return (
     <div className="min-h-screen">
-      <DashboardStyle2 />
+      <DashboardStyle2
+        userName={session.user.name ?? "User"}
+        userEmail={session.user.email ?? ""}
+        userImage={session.user.image ?? null}
+      />
     </div>
   );
 }

@@ -36,11 +36,37 @@ import {
   Cpu,
 } from 'lucide-react';
 
-export function DashboardStyle2() {
+interface DashboardStyle2Props {
+  userName: string;
+  userEmail: string;
+  userImage: string | null;
+}
+
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return 'Good morning';
+  if (hour >= 12 && hour < 17) return 'Good afternoon';
+  if (hour >= 17 && hour < 21) return 'Good evening';
+  return 'Good night';
+}
+
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+}
+
+export function DashboardStyle2({ userName, userEmail, userImage }: DashboardStyle2Props) {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedWeekDay, setSelectedWeekDay] = useState('Tue');
   const [selectedItems, setSelectedItems] = useState<string[]>(['agent-1', 'agent-2']);
   const [chartMetric, setChartMetric] = useState<'throughput' | 'latency'>('throughput');
+
+  const initials = getInitials(userName);
+  const greeting = getGreeting();
 
   const toggleSelect = (id: string) => {
     setSelectedItems((prev) =>
@@ -191,14 +217,24 @@ export function DashboardStyle2() {
           </div>
         </div>
 
-        {/* User Profile in Sidebar Bottom (Replaced Autonomous Swarm) */}
+        {/* User Profile in Sidebar Bottom */}
         <div className="p-2.5 rounded-2xl bg-gradient-to-r from-purple-50 to-violet-50/60 border border-purple-200/80 flex items-center justify-between mt-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-violet-600 border border-purple-200 flex items-center justify-center text-sm font-bold text-white shadow-md shadow-purple-500/20 shrink-0">
-              AB
-            </div>
+            {userImage ? (
+              <Image
+                src={userImage}
+                alt={userName}
+                width={36}
+                height={36}
+                className="w-9 h-9 rounded-xl object-cover border border-purple-200 shadow-md shadow-purple-500/20 shrink-0"
+              />
+            ) : (
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-violet-600 border border-purple-200 flex items-center justify-center text-sm font-bold text-white shadow-md shadow-purple-500/20 shrink-0">
+                {initials}
+              </div>
+            )}
             <div className="min-w-0">
-              <div className="text-xs font-bold text-zinc-900 truncate">{mockDashboardMetrics.userName} Banerjee</div>
+              <div className="text-xs font-bold text-zinc-900 truncate">{userName}</div>
               <div className="text-[10px] text-purple-600 font-mono font-medium flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 Active Commander
@@ -218,7 +254,7 @@ export function DashboardStyle2() {
           <div>
             <h1 className="text-2xl font-black tracking-tight text-zinc-900">Dashboard</h1>
             <p className="text-xs text-zinc-500 mt-0.5">
-              Good morning, {mockDashboardMetrics.userName} — Here&apos;s what&apos;s happening across your agents.
+              {greeting}, {userName.split(' ')[0]} — Here&apos;s what&apos;s happening across your agents.
             </p>
           </div>
 

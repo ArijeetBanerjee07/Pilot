@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import type { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
+import { signIn } from "next-auth/react";
 
 // Dynamically import GrainGradient with SSR disabled for Next.js App Router compatibility
 const GrainGradient = dynamic(
@@ -117,10 +118,11 @@ export default function AuthSectionOne({
                   </p>
                 </div>
 
-                {/* Google Social Login Button (Apple removed as requested) */}
+                {/* Google Social Login Button */}
                 <div className="mt-4">
                   <button
                     type="button"
+                    onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
                     className="w-full flex h-10 items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50/90 hover:bg-slate-100/90 px-4 text-xs sm:text-sm font-semibold text-slate-700 transition-all cursor-pointer shadow-xs hover:border-slate-300"
                   >
                     <GoogleIcon />
