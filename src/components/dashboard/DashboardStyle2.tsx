@@ -31,7 +31,6 @@ import {
 
 interface DashboardStyle2Props {
   userName: string;
-  userEmail: string;
   userImage: string | null;
 }
 
@@ -52,7 +51,7 @@ function getInitials(name: string): string {
     .toUpperCase();
 }
 
-export function DashboardStyle2({ userName, userImage }: Omit<DashboardStyle2Props, 'userEmail'>) {
+export function DashboardStyle2({ userName, userImage }: DashboardStyle2Props) {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedWeekDay, setSelectedWeekDay] = useState('Tue');
   const [selectedItems, setSelectedItems] = useState<string[]>(['agent-1', 'agent-2']);

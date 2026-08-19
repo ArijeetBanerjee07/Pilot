@@ -13,7 +13,6 @@ export default async function DashboardPage() {
     <div className="min-h-screen">
       <DashboardStyle2
         userName={session.user.name ?? "User"}
-        userEmail={session.user.email ?? ""}
         userImage={session.user.image ?? null}
       />
     </div>
