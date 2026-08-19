@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AuthSectionOne from '@/components/ui/auth-section-1';
 
@@ -8,15 +8,12 @@ function AuthContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialMode = searchParams.get('mode') === 'signup' ? 'signup' : 'signin';
+  const modeParam = searchParams.get('mode');
+  const initialMode = modeParam === 'signup' ? 'signup' : 'signin';
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>(initialMode);
 
-  useEffect(() => {
-    const m = searchParams.get('mode');
-    if (m === 'signin' || m === 'signup') {
-      setAuthMode(m);
-    }
-  }, [searchParams]);
+  // Sync mode from URL param changes without useEffect
+  const activeMode = (modeParam === 'signin' || modeParam === 'signup') ? modeParam : authMode;
 
   const handleAuthSuccess = () => {
     setTimeout(() => {
@@ -32,7 +29,7 @@ function AuthContent() {
       {/* Main Form Content */}
       <main className="w-full flex items-center justify-center z-10 px-3 sm:px-4 py-6 pointer-events-auto">
         <AuthSectionOne
-          mode={authMode}
+          mode={activeMode}
           onModeChange={setAuthMode}
           onSuccess={handleAuthSuccess}
         />

@@ -237,7 +237,7 @@ export default function AuthDesign1DevZero({ mode, onModeChange, onSuccess }: Au
               <div className="space-y-1.5">
                 <button
                   type="button"
-                  onClick={() => handleSubmit({ preventDefault: () => {} } as any)}
+                  onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>)}
                   className="w-full py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-700 text-xs font-semibold rounded-lg transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
                 >
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
@@ -263,7 +263,7 @@ export default function AuthDesign1DevZero({ mode, onModeChange, onSuccess }: Au
 
                 <button
                   type="button"
-                  onClick={() => handleSubmit({ preventDefault: () => {} } as any)}
+                  onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>)}
                   className="w-full py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 text-slate-700 text-xs font-semibold rounded-lg transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
                 >
                   <FaGithub className="w-3.5 h-3.5 text-slate-900" />
@@ -275,7 +275,7 @@ export default function AuthDesign1DevZero({ mode, onModeChange, onSuccess }: Au
               <div className="text-center pt-0.5 text-xs text-slate-600">
                 {mode === 'signin' ? (
                   <span>
-                    You don't have an account yet?{' '}
+                    You don&apos;t have an account yet?{' '}
                     <button
                       type="button"
                       onClick={() => onModeChange('signup')}

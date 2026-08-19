@@ -5,15 +5,12 @@ import Image from 'next/image';
 import {
   mockDashboardMetrics,
   mockAgentOperations,
-  mockRecentActivities,
-  mockAttentionItems,
 } from '@/lib/mock-data/pilot-data';
 import {
   Search,
   Bell,
   Info,
   TrendingUp,
-  TrendingDown,
   MoreVertical,
   CheckSquare,
   Square,
@@ -29,11 +26,7 @@ import {
   Settings,
   HelpCircle,
   PanelLeftClose,
-  Sparkles,
-  ArrowUpRight,
   AlertTriangle,
-  Layers,
-  Cpu,
 } from 'lucide-react';
 
 interface DashboardStyle2Props {
@@ -59,7 +52,7 @@ function getInitials(name: string): string {
     .toUpperCase();
 }
 
-export function DashboardStyle2({ userName, userEmail, userImage }: DashboardStyle2Props) {
+export function DashboardStyle2({ userName, userImage }: Omit<DashboardStyle2Props, 'userEmail'>) {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedWeekDay, setSelectedWeekDay] = useState('Tue');
   const [selectedItems, setSelectedItems] = useState<string[]>(['agent-1', 'agent-2']);

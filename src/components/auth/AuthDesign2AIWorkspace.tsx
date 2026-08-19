@@ -236,7 +236,7 @@ export default function AuthDesign2AIWorkspace({ mode, onModeChange, onSuccess }
               {/* Google SSO Button */}
               <button
                 type="button"
-                onClick={() => handleSubmit({ preventDefault: () => {} } as any)}
+                onClick={() => handleSubmit({ preventDefault: () => {} } as React.FormEvent<HTMLFormElement>)}
                 className="w-full py-2.5 px-3 bg-white/95 border border-slate-200/90 hover:bg-slate-50 hover:border-slate-300 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl transition flex items-center justify-center gap-2.5 cursor-pointer shadow-2xs"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -265,7 +265,7 @@ export default function AuthDesign2AIWorkspace({ mode, onModeChange, onSuccess }
             <div className="text-center pt-2.5 text-xs text-slate-600 border-t border-slate-100/80 mt-2">
               {mode === 'signin' ? (
                 <span>
-                  Don't have an account?{' '}
+                  Don&apos;t have an account?{' '}
                   <button
                     type="button"
                     onClick={() => onModeChange('signup')}

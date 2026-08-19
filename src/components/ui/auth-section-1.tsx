@@ -178,7 +178,7 @@ export default function AuthSectionOne({
                         checked={noNewsletter}
                         onChange={(e) => setNoNewsletter(e.target.checked)}
                       >
-                        I don't want to receive feature updates emails
+                        I don&apos;t want to receive feature updates emails
                       </CheckboxLine>
                       <CheckboxLine
                         checked={agreeTerms}
@@ -218,7 +218,7 @@ export default function AuthSectionOne({
                 <div className="text-center pt-3 text-xs text-slate-600">
                   {activeMode === "signin" ? (
                     <span>
-                      Don't have an account?{" "}
+                      Don&apos;t have an account?{" "}
                       <button
                         type="button"
                         onClick={() => setMode("signup")}
