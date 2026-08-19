@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { Wind, Info, MessageCircle } from 'lucide-react';
 import { FaTwitter, FaGithub } from 'react-icons/fa';
@@ -137,10 +138,11 @@ export default function PilotDesignV7() {
           <a href="#" className="text-black/70 hover:text-black transition-colors text-sm font-semibold tracking-wide">Pricing</a>
         </div>
         <div className="flex items-center gap-3">
-
-          <RadialGlowButton className="px-6 py-2 text-sm shadow-[0_4px_0_rgba(0,0,0,0.2)] active:translate-y-[4px] active:shadow-none">
-            Get Started
-          </RadialGlowButton>
+          <Link href="/auth">
+            <RadialGlowButton className="px-6 py-2 text-sm shadow-[0_4px_0_rgba(0,0,0,0.2)] active:translate-y-[4px] active:shadow-none cursor-pointer">
+              Get Started
+            </RadialGlowButton>
+          </Link>
         </div>
       </nav>
 
@@ -162,9 +164,11 @@ export default function PilotDesignV7() {
             Harness the power of decentralized AI with Pilot. The future is fly.
           </p>
           <div className="flex items-center gap-4 mt-4 w-full">
-            <RadialGlowButton className="w-[200px] h-[60px] text-lg shadow-[0_6px_0_rgba(0,0,0,0.2)] active:translate-y-[6px] active:shadow-none font-bold flex items-center justify-center !p-0">
-              Get Started
-            </RadialGlowButton>
+            <Link href="/auth">
+              <RadialGlowButton className="w-[200px] h-[60px] text-lg shadow-[0_6px_0_rgba(0,0,0,0.2)] active:translate-y-[6px] active:shadow-none font-bold flex items-center justify-center !p-0 cursor-pointer">
+                Get Started
+              </RadialGlowButton>
+            </Link>
             <a href="https://github.com/ArijeetBanerjee07/Pilot" target="_blank" rel="noopener noreferrer" className="w-[200px] h-[60px] flex items-center justify-center gap-3 rounded-full border border-black/20 bg-white/20 hover:bg-white/40 backdrop-blur-md shadow-[0_6px_0_rgba(0,0,0,0.05)] active:translate-y-[6px] active:shadow-none transition-all text-black text-lg font-bold">
               <FaGithub className="w-6 h-6" />
               GitHub
@@ -389,9 +393,11 @@ export default function PilotDesignV7() {
               Your next favourite tool is just one click away.
             </p>
           </div>
-          <button className="px-12 py-4 text-slate-900 font-semibold bg-white rounded-full text-base mt-8 md:mt-0 hover:bg-slate-100 shadow-lg active:translate-y-1 active:shadow-none transition-all whitespace-nowrap">
-            Get Started
-          </button>
+          <Link href="/auth">
+            <button className="px-12 py-4 text-slate-900 font-semibold bg-white rounded-full text-base mt-8 md:mt-0 hover:bg-slate-100 shadow-lg active:translate-y-1 active:shadow-none transition-all whitespace-nowrap cursor-pointer">
+              Get Started
+            </button>
+          </Link>
         </motion.div>
       </section>
 
